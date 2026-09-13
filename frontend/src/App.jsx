@@ -262,14 +262,22 @@ Account Number: 4439021984`);
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <a 
-            href="/ledgerguard-ai-commercial-bundle.zip" 
+            href="/sample-test-invoices.zip" 
             download 
             className="nav-tab" 
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', fontSize: '11px', color: '#58a6ff', borderColor: 'rgba(56, 139, 253, 0.4)' }}
-            title="Download Commercial Distribution ZIP (Full Source, Docs, License)"
+            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', fontSize: '11px', color: '#8b949e', borderColor: 'rgba(255, 255, 255, 0.1)' }}
+            title="Download 3 sample test invoices (clean, BEC fraud, math error) to test scanner"
           >
-            <Download size={13} /> Source Kit (.zip)
+            <Download size={13} /> Test Invoices (.zip)
           </a>
+          <button 
+            className="nav-tab" 
+            onClick={() => handleCheckout('buyout')}
+            style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', fontSize: '11px', color: '#58a6ff', borderColor: 'rgba(56, 139, 253, 0.4)' }}
+            title="Acquire full commercial source code & white-label license"
+          >
+            <Lock size={13} /> Source License ($499)
+          </button>
           <div className="status-badge">
             <div className="pulsing-dot"></div>
             DEFENSES ARMED
@@ -798,12 +806,13 @@ Account Number: 4439021984`);
             </div>
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
               <a 
-                href="/ledgerguard-ai-commercial-bundle.zip" 
+                href="/sample-test-invoices.zip" 
                 download 
                 className="btn-action btn-secondary" 
                 style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 18px', fontSize: '12px' }}
+                title="Download 3 sample test PDFs to test fraud detection"
               >
-                <Download size={14} /> Download Starter Kit
+                <Download size={14} /> Download Sample Invoices (.zip)
               </a>
               <button 
                 className="btn-action btn-primary" 
