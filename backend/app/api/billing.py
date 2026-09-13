@@ -21,8 +21,9 @@ async def create_checkout_session(payload: CheckoutRequest):
     if Stripe credentials are in sandbox/demo mode.
     """
     tier_prices = {
-        "pro": {"name": "LedgerGuard Pro (Unlimited Audits & Vault)", "price": 29.00},
-        "enterprise": {"name": "LedgerGuard Enterprise (Team Seats & Webhooks)", "price": 99.00}
+        "pro": {"name": "LedgerGuard Pro (Unlimited Audits & Vault)", "price": 29.00, "recurring": True},
+        "enterprise": {"name": "LedgerGuard Enterprise (Team Seats & Webhooks)", "price": 99.00, "recurring": True},
+        "buyout": {"name": "LedgerGuard Full Commercial Source Code & White-Label License", "price": 499.00, "recurring": False}
     }
 
     tier_info = tier_prices.get(payload.tier.lower(), tier_prices["pro"])
@@ -31,21 +32,21 @@ async def create_checkout_session(payload: CheckoutRequest):
         try:
             import stripe
             stripe.api_key = settings.STRIPE_SECRET_KEY
+            price_data = {
+                "currency": "usd",
+                "product_data": {
+                    "name": tier_info["name"],
+                    "description": "Automated Accounts Payable Invoice & Wire Fraud Defense Platform"
+                },
+                "unit_amount": int(tier_info["price"] * 100),
+            }
+            if tier_info["recurring"]:
+                price_data["recurring"] = {"interval": "month"}
+
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
-                line_items=[{
-                    "price_data": {
-                        "currency": "usd",
-                        "product_data": {
-                            "name": tier_info["name"],
-                            "description": "Automated Accounts Payable Invoice & Wire Fraud Defense Platform"
-                        },
-                        "unit_amount": int(tier_info["price"] * 100),
-                        "recurring": {"interval": "month"}
-                    },
-                    "quantity": 1,
-                }],
-                mode="subscription",
+                line_items=[{"price_data": price_data, "quantity": 1}],
+                mode="subscription" if tier_info["recurring"] else "payment",
                 success_url=payload.success_url + "?session_id={CHECKOUT_SESSION_ID}",
                 cancel_url=payload.cancel_url,
             )

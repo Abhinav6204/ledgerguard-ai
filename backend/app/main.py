@@ -80,3 +80,23 @@ async def health_check():
         },
         "security_matrix": "FORTIFIED"
     }
+
+# 5. Mount Static Production Frontend Cockpit
+import os
+from fastapi.staticfiles import StaticFiles
+
+possible_paths = [
+    "/app/static",
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend", "dist"),
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), "static"),
+    os.path.abspath("static")
+]
+
+dist_path = None
+for p in possible_paths:
+    if os.path.exists(p) and os.path.exists(os.path.join(p, "index.html")):
+        dist_path = p
+        break
+
+if dist_path:
+    app.mount("/", StaticFiles(directory=dist_path, html=True), name="static")

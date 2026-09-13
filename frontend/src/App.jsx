@@ -260,9 +260,20 @@ Account Number: 4439021984`);
           </button>
         </nav>
 
-        <div className="status-badge">
-          <div className="pulsing-dot"></div>
-          DEFENSES ARMED
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <a 
+            href="/ledgerguard-ai-commercial-bundle.zip" 
+            download 
+            className="nav-tab" 
+            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', fontSize: '11px', color: '#58a6ff', borderColor: 'rgba(56, 139, 253, 0.4)' }}
+            title="Download Commercial Distribution ZIP (Full Source, Docs, License)"
+          >
+            <Download size={13} /> Source Kit (.zip)
+          </a>
+          <div className="status-badge">
+            <div className="pulsing-dot"></div>
+            DEFENSES ARMED
+          </div>
         </div>
       </header>
 
@@ -769,6 +780,37 @@ Account Number: 4439021984`);
               </div>
               <button className="btn-action btn-secondary" style={{ width: '100%' }} onClick={() => handleCheckout('enterprise')}>
                 Deploy Enterprise ($99/mo)
+              </button>
+            </div>
+          </div>
+
+          {/* Full Commercial Buyout & Sovereignty Option */}
+          <div style={{ marginTop: '24px', background: 'rgba(56, 139, 253, 0.06)', border: '1px solid rgba(56, 139, 253, 0.25)', borderRadius: '12px', padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+            <div style={{ maxWidth: '600px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Zap size={18} color="#58a6ff" />
+                <span style={{ fontWeight: 600, color: '#fff', fontSize: '15px' }}>Full Commercial Source Code & White-Label Buyout</span>
+                <span style={{ background: 'rgba(56, 139, 253, 0.2)', color: '#58a6ff', fontSize: '11px', padding: '2px 8px', borderRadius: '10px' }}>One-Time Buyout</span>
+              </div>
+              <p style={{ color: '#8b949e', fontSize: '13px', margin: '8px 0 0 0', lineHeight: 1.5 }}>
+                Need 100% on-premises sovereignty or want to re-brand LedgerGuard AI as your company's own AP defense product? Acquire the complete source repository, Docker blueprints, and commercial re-distribution rights.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <a 
+                href="/ledgerguard-ai-commercial-bundle.zip" 
+                download 
+                className="btn-action btn-secondary" 
+                style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 18px', fontSize: '12px' }}
+              >
+                <Download size={14} /> Download Starter Kit
+              </a>
+              <button 
+                className="btn-action btn-primary" 
+                onClick={() => handleCheckout('buyout')}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 18px', fontSize: '12px' }}
+              >
+                <Lock size={14} /> Buy Full Source License ($499)
               </button>
             </div>
           </div>
