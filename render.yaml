@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: ledgerguard-ai
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MAX_UPLOAD_SIZE_MB
+        value: 10
+      - key: RATE_LIMIT_PER_MINUTE
+        value: 60
+      - key: RATE_LIMIT_BURST
+        value: 15
+      - key: ALLOWED_ORIGINS
+        value: "*"
